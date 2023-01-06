@@ -24,6 +24,19 @@ class _HomeState extends State<Home> {
       todoList.removeWhere((element) => element.id == id);
     });
   }
+
+  void _toDoAdd(String todo) {
+    print(todo);
+    setState(
+      () {
+        todoList.add(ToDo(
+            id: DateTime.now().millisecondsSinceEpoch.toString(),
+            todoText: todo,
+            isDone: false));
+      },
+    );
+  }
+
   // void _handleToDoChange(ToDo todo) {}
 
   @override
@@ -60,7 +73,9 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          AddTodo()
+          AddTodo(
+            onAddToDoItem: _toDoAdd,
+          )
         ],
       ),
     );
@@ -92,10 +107,10 @@ class _HomeState extends State<Home> {
 }
 
 class AddTodo extends StatelessWidget {
-  const AddTodo({
-    Key? key,
-  }) : super(key: key);
+  final onAddToDoItem;
+  final text = TextEditingController();
 
+  AddTodo({Key? key, this.onAddToDoItem}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -118,7 +133,9 @@ class AddTodo extends StatelessWidget {
                 ],
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
-              child: const TextField(
+              child: TextField(
+                controller: text,
+                onEditingComplete: () => onAddToDoItem(text.text),
                 decoration: InputDecoration(
                     hintText: "Add a new todo item", border: InputBorder.none),
               ),
@@ -130,7 +147,9 @@ class AddTodo extends StatelessWidget {
               right: 20,
             ),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                onAddToDoItem(text.text);
+              },
               style: ElevatedButton.styleFrom(
                   backgroundColor: tdBlue,
                   minimumSize: const Size(60, 60),
