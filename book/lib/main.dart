@@ -7,6 +7,7 @@ import 'package:book/components/TrendingRow.dart';
 import 'package:book/components/WideCard.dart';
 import 'package:book/components/WidthSeperator.dart';
 import 'package:book/constants/colors.dart';
+import 'package:book/screens/ProfileScreen.dart';
 import 'package:book/screens/SearchScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -69,10 +70,31 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.settings),
+        leading: Icon(
+          Icons.settings,
+          // color: Colors.white,
+        ),
+        actions: [
+          IconButton(
+            // color: Colors.white,
+            icon: const Icon(
+              Icons.manage_accounts,
+            ),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return ProfileScreen();
+              }));
+            },
+          ),
+        ],
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          // style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.fromLTRB(10, 30, 0, 0),
