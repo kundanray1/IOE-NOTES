@@ -1,3 +1,4 @@
+import 'package:book/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomIconButton extends StatelessWidget {
@@ -11,16 +12,17 @@ class CustomIconButton extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 20),
       child: TextButton.icon(
         style: TextButton.styleFrom(
-          backgroundColor: Colors.lightBlue,
-        ),
+            // surfaceTintColor: Colors.amber,
+            backgroundColor: Colors.lightBlue,
+            side: BorderSide(color: Colors.lightBlue)),
         onPressed: () {},
         icon: const Icon(
-          Icons.edit,
-          color: Colors.white,
+          Icons.check,
+          color: tdBlack,
         ),
         label: const Text(
           'Edit Profile',
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          style: TextStyle(color: tdBlack, fontSize: 18),
         ),
       ),
     );

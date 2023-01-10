@@ -7,6 +7,7 @@ import 'package:book/components/TrendingRow.dart';
 import 'package:book/components/WideCard.dart';
 import 'package:book/components/WidthSeperator.dart';
 import 'package:book/constants/colors.dart';
+import 'package:book/screens/AddBookScreen.dart';
 import 'package:book/screens/ProfileScreen.dart';
 import 'package:book/screens/SearchScreen.dart';
 import 'package:flutter/material.dart';
@@ -69,120 +70,157 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        leading: Icon(
-          Icons.settings,
-          // color: Colors.white,
-        ),
-        actions: [
-          IconButton(
+        appBar: AppBar(
+          leading: Icon(
+            Icons.settings,
             // color: Colors.white,
-            icon: const Icon(
-              Icons.manage_accounts,
+          ),
+          actions: [
+            IconButton(
+              // color: Colors.white,
+              icon: const Icon(
+                Icons.manage_accounts,
+              ),
+              tooltip: 'Show Snackbar',
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                  return ProfileScreen();
+                }));
+              },
             ),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                return ProfileScreen();
-              }));
-            },
-          ),
-        ],
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(
-          widget.title,
-          // style: TextStyle(color: Colors.white),
-        ),
-      ),
-      body: Container(
-        padding: EdgeInsets.fromLTRB(10, 30, 0, 0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                  // padding:
-                  //     const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: const Text(
-                'Trending this week',
-                style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
-              )),
-              HeaderSeperator(),
-              TrendingRow(
-                image: 'assets/images/Mask.png',
-              ),
-              SectionSeperator(),
-              const Text(
-                'All Books',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const HeaderSeperator(),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    WideCard(),
-                    WidthSeperator(),
-                    WideCard(),
-                  ],
-                ),
-              ),
-              SectionSeperator(),
-              const Text(
-                'Continue Reading',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const HeaderSeperator(),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    WideCard(),
-                    WidthSeperator(),
-                    WideCard(),
-                  ],
-                ),
-              ),
-              SectionSeperator(),
-              const Text(
-                'Recommended for you',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const HeaderSeperator(),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    RecommendedCard(),
-                    WidthSeperator(),
-                    RecommendedCard(),
-                  ],
-                ),
-              ),
-            ],
+          ],
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(
+            widget.title,
+            // style: TextStyle(color: Colors.white),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (BuildContext context) {
-            return SearchScreen();
-          }));
-          // Add your onPressed code here!
-        },
-        backgroundColor: Colors.lightBlue,
-        child: const Icon(
-          Icons.search,
-          color: Colors.white,
+        body: Container(
+          padding: EdgeInsets.fromLTRB(10, 30, 0, 0),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                    // padding:
+                    //     const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: const Text(
+                  'Trending this week',
+                  style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
+                )),
+                HeaderSeperator(),
+                TrendingRow(
+                  image: 'assets/images/Mask.png',
+                ),
+                SectionSeperator(),
+                const Text(
+                  'All Books',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const HeaderSeperator(),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      WideCard(),
+                      WidthSeperator(),
+                      WideCard(),
+                    ],
+                  ),
+                ),
+                SectionSeperator(),
+                const Text(
+                  'Continue Reading',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const HeaderSeperator(),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      WideCard(),
+                      WidthSeperator(),
+                      WideCard(),
+                    ],
+                  ),
+                ),
+                SectionSeperator(),
+                const Text(
+                  'Recommended for you',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const HeaderSeperator(),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      RecommendedCard(),
+                      WidthSeperator(),
+                      RecommendedCard(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FloatingActionButton(
+              heroTag: null,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                  return AddBook();
+                }));
+                // Add your onPressed code here!
+              },
+              backgroundColor: Colors.lightGreen,
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            ),
+            FloatingActionButton(
+              heroTag: null,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                  return SearchScreen();
+                }));
+                // Add your onPressed code here!
+              },
+              backgroundColor: Colors.lightBlue,
+              child: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        )
+
+        // FloatingActionButton(
+        //   onPressed: () {
+        //     Navigator.push(context,
+        //         MaterialPageRoute(builder: (BuildContext context) {
+        //       return SearchScreen();
+        //     }));
+        //     // Add your onPressed code here!
+        //   },
+        //   backgroundColor: Colors.lightBlue,
+        //   child: const Icon(
+        //     Icons.search,
+        //     color: Colors.white,
+        //   ),
+        // ),
+
+        // This trailing comma makes auto-formatting nicer for build methods.
+        );
   }
 }

@@ -79,7 +79,20 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.max,
-                children: [EditSelector(), EditSelector(), EditSelector()]),
+                children: const [
+                  EditSelector(
+                    title: 'Field',
+                    selected: 'Engineering',
+                  ),
+                  EditSelector(
+                    title: 'Course',
+                    selected: 'BCT',
+                  ),
+                  EditSelector(
+                    title: 'Semester',
+                    selected: 'III',
+                  )
+                ]),
           ),
           SectionHeader(title: ''),
           CustomIconButton(),
